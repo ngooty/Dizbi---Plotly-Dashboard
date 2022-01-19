@@ -1,0 +1,143 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pyodbc\n",
+    "import pandas as pd\n",
+    "pd.options.mode.chained_assignment=None\n",
+    "import numpy as np\n",
+    "def mydbconn(server='',dbname='',userid='',passwd=''):\n",
+    "\tcnx = pyodbc.connect(\n",
+    "    server=\"hide.czsauxqf1c8t.ap-southeast-1.rds.amazonaws.com\",\n",
+    "    #database=\"PDS_SAP_CLONE\",\n",
+    "    database=\"PDS_SAP_clone\",\n",
+    "    user='DbView',\n",
+    "    tds_version='7.4',\n",
+    "    password=\"welcome@2020\",\n",
+    "    port=1433,\n",
+    "    driver='FreeTDS')\n",
+    "\treturn cnx\n",
+    "\n",
+    "def runsql(stmt):\n",
+    "\tcnx=mydbconn()\n",
+    "\tresult = pd.read_sql_query(stmt,cnx)\n",
+    "\tpd.set_option('display.float_format', lambda x: '%.5f' % x)\n",
+    "\treturn result\n",
+    "#result=runsql('select * from dbo.tb_po_details')\n",
+    "#print(result)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "            EBELN EBELP ETENR C_NAME1       VBELN POSNR  \\\n",
+      "0      1000000386    10     1                             \n",
+      "1      1000000386    20     1                             \n",
+      "2      1000000386    30     1                             \n",
+      "3      1000000386    40     1                             \n",
+      "4      1000000386    50     1                             \n",
+      "...           ...   ...   ...     ...         ...   ...   \n",
+      "62818  6900003501     1     1                             \n",
+      "62819  6900004616     1     1                             \n",
+      "62820  6900004631     1     1                             \n",
+      "62821  6900004632     1     1                             \n",
+      "62822  6900004874     1     1                             \n",
+      "\n",
+      "                                     BSTKD                 BEZEI       LIFNR  \\\n",
+      "0                                                                 500706       \n",
+      "1                                                                 500706       \n",
+      "2                                                                 500706       \n",
+      "3                                                                 500706       \n",
+      "4                                                                 500706       \n",
+      "...                                    ...                   ...         ...   \n",
+      "62818                                                             1204486      \n",
+      "62819                                                             105825       \n",
+      "62820                                                             105830       \n",
+      "62821                                                             1205040      \n",
+      "62822                                                             105825       \n",
+      "\n",
+      "                                                 V_NAME1  ... SAP_PO_VER  \\\n",
+      "0      Kohinoor Mills Ltd. 8th -KM, Manga Raiwind Roa...  ...          0   \n",
+      "1      Kohinoor Mills Ltd. 8th -KM, Manga Raiwind Roa...  ...          0   \n",
+      "2      Kohinoor Mills Ltd. 8th -KM, Manga Raiwind Roa...  ...          0   \n",
+      "3      Kohinoor Mills Ltd. 8th -KM, Manga Raiwind Roa...  ...          0   \n",
+      "4      Kohinoor Mills Ltd. 8th -KM, Manga Raiwind Roa...  ...          0   \n",
+      "...                                                  ...  ...        ...   \n",
+      "62818  FRESH COOL ENGINEERS CHEENADUWA WATTA,ALUBOMUL...  ...          0   \n",
+      "62819  Mazars Business Advisors Private Limited Espla...  ...          1   \n",
+      "62820  Dimension Data No:939/H2A,New Parliament Road ...  ...          0   \n",
+      "62821  Datos (Pvt) Ltd 77, Wewalduwa Road  11600 Kela...  ...          0   \n",
+      "62822  Mazars Business Advisors Private Limited Espla...  ...          0   \n",
+      "\n",
+      "      HID_PO_VER PO_STATUS Adv_pmt MAIL_SENT_VER GRD_DESC GRD_TOT_AMNT  \\\n",
+      "0              0         A       0             0     None         None   \n",
+      "1              0         A       0             0     None         None   \n",
+      "2              0         A       0             0     None         None   \n",
+      "3              0         A       0             0     None         None   \n",
+      "4              0         A       0             0     None         None   \n",
+      "...          ...       ...     ...           ...      ...          ...   \n",
+      "62818          0                 0             0     None         None   \n",
+      "62819          0                 0             0     None         None   \n",
+      "62820          0                 0             0     None         None   \n",
+      "62821          0                 0             0     None         None   \n",
+      "62822          0                 0             0     None         None   \n",
+      "\n",
+      "      Consignee_Code SIZE_DES Customer_Code  \n",
+      "0               None     None          None  \n",
+      "1               None     None          None  \n",
+      "2               None     None          None  \n",
+      "3               None     None          None  \n",
+      "4               None     None          None  \n",
+      "...              ...      ...           ...  \n",
+      "62818           None     None          None  \n",
+      "62819           None     None          None  \n",
+      "62820           None     None          None  \n",
+      "62821           None     None          None  \n",
+      "62822           None     None          None  \n",
+      "\n",
+      "[62823 rows x 58 columns]\n"
+     ]
+    }
+   ],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.7.6"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}
